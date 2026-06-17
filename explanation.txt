@@ -1,0 +1,156 @@
+===================================================
+  STUDENT MANAGEMENT SYSTEM - LINE BY LINE EXPLANATION
+===================================================
+
+-------------------------------
+LINE 1: import os
+-------------------------------
+"os" helps you check if a file already exists on your computer.
+
+-------------------------------
+LINE 2: import pandas as pd
+-------------------------------
+"pandas" is used to work with data in table form (like Excel).
+We nickname it "pd" so we don't have to type "pandas" every time.
+
+-------------------------------
+LINE 3: import matplotlib.pyplot as plt
+-------------------------------
+"matplotlib" is used to draw graphs and charts.
+We nickname it "plt" for short.
+
+-------------------------------
+LINE 4: class student:
+-------------------------------
+This creates a CLASS called "student".
+A class is like a blueprint. Just like a house blueprint
+helps build many houses, this blueprint helps create many student objects.
+
+-------------------------------
+LINE 5: def __init__(self, name, marks):
+-------------------------------
+This is the CONSTRUCTOR. It runs automatically when you create a new student.
+It takes "name" and "marks" as inputs.
+"self" means "this student object".
+
+-------------------------------
+LINES 6-7: self.name = name / self.marks = marks
+-------------------------------
+This stores the name and marks INSIDE the student object.
+So every student remembers their own name and marks.
+
+-------------------------------
+LINE 8: def save_to_csv(self):
+-------------------------------
+This is a METHOD (a function inside a class).
+When called, it saves the student's data to a file called "student.csv".
+
+-------------------------------
+LINE 9: data = {"name": [self.name], "marks": [self.marks]}
+-------------------------------
+Creates a dictionary (like a labeled container) with the student's name and marks.
+Values are in lists [] because pandas needs that format.
+
+-------------------------------
+LINE 10: df = pd.DataFrame(data)
+-------------------------------
+Converts the dictionary into a TABLE (called a DataFrame).
+Think of it like an Excel sheet with rows and columns.
+
+-------------------------------
+LINE 11: if os.path.exists("student.csv"):
+-------------------------------
+Checks if a file called "student.csv" already exists on your computer.
+
+-------------------------------
+LINE 12: df.to_csv("student.csv", mode="a", header=False, index=False)
+-------------------------------
+If the file EXISTS - it ADDS the new student to the bottom of the file.
+mode="a" means append (add to existing).
+header=False means don't write column names again.
+index=False means don't write row numbers.
+
+-------------------------------
+LINES 13-14: else: df.to_csv("student.csv", index=False)
+-------------------------------
+If the file does NOT exist yet - it CREATES a new file and writes the data.
+
+-------------------------------
+LINE 15: menu = 0
+-------------------------------
+Sets menu to 0 as a starting value so the while loop below can begin.
+
+-------------------------------
+LINE 16: while menu != 6:
+-------------------------------
+Keeps the program running in a LOOP until the user picks option 6 (quit).
+"!=" means "not equal to".
+
+-------------------------------
+LINE 17: menu = int(input("Choose ur option - 1, 2, 3, 4, 5, 6"))
+-------------------------------
+Asks the user to type a number.
+input() gets the typed text.
+int() converts it from text to a number.
+
+-------------------------------
+LINES 18-22: if menu == 1 (ADD STUDENT)
+-------------------------------
+If user picks 1:
+- Asks for the student's name and marks.
+- Creates a new student object using the class.
+- Calls save_to_csv() to save them to the file.
+
+-------------------------------
+LINES 23-25: elif menu == 2 (VIEW ALL STUDENTS)
+-------------------------------
+If user picks 2:
+- Reads the student.csv file.
+- Prints the full table of all students.
+
+-------------------------------
+LINES 26-28: elif menu == 3 (SHOW STATISTICS)
+-------------------------------
+If user picks 3:
+- Reads the CSV file.
+- .describe() shows stats like average, min, max of the marks automatically.
+
+-------------------------------
+LINES 29-35: elif menu == 4 (BAR CHART)
+-------------------------------
+If user picks 4:
+- Reads the CSV file.
+- plt.bar() draws a bar chart with names on X-axis and marks on Y-axis.
+- .title(), .xlabel(), .ylabel() add labels to the chart.
+- .show() displays the chart on screen.
+
+-------------------------------
+LINES 36-52: elif menu == 5 (QUIZ)
+-------------------------------
+If user picks 5:
+- score starts at 0.
+- Asks 2 questions.
+- For each correct answer, score goes up by 1.
+- At the end, prints "Your score is X/2".
+
+-------------------------------
+LINES 53-55: elif menu == 6 (QUIT)
+-------------------------------
+If user picks 6:
+- Prints "Quit! You are out!"
+- "break" exits the while loop and ends the program.
+
+===================================================
+  SUMMARY
+===================================================
+This program is a mini Student Management System that:
+1. ADDS students to a CSV file
+2. VIEWS all students
+3. SHOWS statistics (average marks etc.)
+4. DRAWS a bar chart of marks
+5. RUNS a quiz
+6. EXITS the program
+
+You used: Classes, Pandas, Matplotlib, File Handling, and Loops - all in one project!
+Great work Amlan!
+===================================================
